@@ -1,4 +1,5 @@
-import xlrd # Import xlrd for performing operations on Excel Sheet
+# Import xlrd for performing operations on Excel Sheet
+import xlrd 
 
 # Read input from file
 workbook = xlrd.open_workbook('entries.xlsx')
