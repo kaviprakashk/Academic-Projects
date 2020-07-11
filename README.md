@@ -1,5 +1,3 @@
-# Academic-Projects
-
 CONTENTS
 ========
 Introduction
