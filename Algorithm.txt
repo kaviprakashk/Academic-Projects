@@ -1,0 +1,153 @@
+Read Excel data set file
+input_sheet = read file
+
+no_of_rows = input_sheet.nrows
+
+while loop curr_row < no_of_rows
+	type_of_question = value at input_sheet.cell(curr_row,1)
+	total_no_students = value at input_sheet.cell(curr_row,8)
+	difficulty_level_given = value at input_sheet.cell(curr_row,2)
+	max_mark = value at input_sheet.cell(curr_row,3)
+	
+	if total_no_students not equal to ZERO 
+		total_marks_obtained = max_mark *(value at input_sheet.cell(curr_row,7)/2 + max_mark*value at input_sheet.cell(curr_row,5)
+		accuracy = (total_marks_obtained / (total_no_students*max_mark)* 100
+	else
+		print (difficulty_level_given)
+	end if
+	
+	k=9
+	for loop (0,total_no_students)
+		total_time_taken += value at input_sheet.cell(curr_row,k)
+		total_no_of_hints_used += value at input_sheet.cell(curr_row,k+3)
+		if type_of_question is "MCQ"
+			total_no_of_times_answer_changed += value at input_sheet.cell(curr_row,k+1)
+		end if
+		if type_of_question is "programming"
+			total_no_of_times_answer_compiled += value at input_sheet.cell(curr_row,k+2)
+		end if
+	end for loop
+	
+	average_time_taken = total_time_taken / total_no_students
+	average_no_of_hints_used = total_no_of_hints_used / total_no_students
+	average_no_of_times_compiled = total_no_of_times_answer_compiled / total_no_students
+	average_no_of_times_answer_changed = total_no_of_times_answer_changed / total_no_students
+	
+	if total_no_students != 0
+		difficulty_level_value = 0
+		if difficulty_level_given == "Medium" :
+			difficulty_level_value+=2
+		end if
+        	if difficulty_level_given == "Hard" :
+            		difficulty_level_value+=3
+		end if
+        	if difficulty_level_given == "Easy" :
+            		difficulty_level_value+=1
+		end if
+		
+		if accuracy >=0 and accuracy <33 
+			difficulty_level_value +=3
+		else if accuracy >=33 and accuracy <60
+			difficulty_level_value +=2
+		else
+			difficulty_level_given +=1
+		end if
+		
+		if average_no_of_hints_used <=1 
+            		difficulty_level_value +=1
+        	else if average_no_of_hints_used <=2
+            		difficulty_level_value +=2
+        	else 
+            		difficulty_level_value +=3
+	end if
+	
+	if type_of_question is "MCQ"
+		if average_time_taken <= 1
+            		difficulty_level_value +=1
+        	else if average_time_taken >1 and average_time_taken <=2
+            		difficulty_level_value +=2
+        	else
+            		difficulty_level_value +=3
+		end if
+          
+        	if average_no_of_times_answer_changed <=1 :
+          		difficulty_value+=1
+        	else if average_no_of_times_answer_changed >1 and average_no_of_times_answer_changed <=3:
+          		difficulty_value+=2
+        	else
+          		difficulty_value+=3
+		end if
+		
+		if difficulty_level_value <= 5 
+			print("Easy")
+		else if difficulty_level_value <=10
+			print("Medium")
+		else
+			print("Hard")
+		end if
+	end if
+	
+	if type_of_question is "Programming"
+		if average_time_taken <= 30
+            		difficulty_level_value +=1
+        	else if average_time_taken >30 and average_time_taken <=80
+            		difficulty_level_value +=2
+        	else
+            		difficulty_level_value +=3
+		end if
+          
+        	if average_no_of_times_compiled <=7 :
+          		difficulty_value+=1
+        	else if average_no_of_times_compiled >7 and average_no_of_times_compiled <=14:
+          		difficulty_value+=2
+        	else
+          		difficulty_value+=3
+		end if
+		
+		if difficulty_level_value <= 5 
+			print("Easy")
+		else if difficulty_level_value <=10
+			print("Medium")
+		else
+			print("Hard")
+		end if
+	end if
+	
+	if type_of_question is "Fill Up"
+			
+		if average_time_taken <= 1
+            		difficulty_level_value +=1
+        	else if average_time_taken >1 and average_time_taken <=2
+            		difficulty_level_value +=2
+        	else
+            		difficulty_level_value +=3
+		end if
+          
+		if difficulty_level_value <= 4 
+			print("Easy")
+		else if difficulty_level_value <=8
+			print("Medium")
+		else
+			print("Hard")
+		end if
+	end if
+	
+	if type_of_question is "Match"
+			
+		if average_time_taken <= 2
+            		difficulty_level_value +=1
+        	else if average_time_taken >2 and average_time_taken <=4
+            		difficulty_level_value +=2
+        	else
+            		difficulty_level_value +=3
+		end if
+          
+		if difficulty_level_value <= 4 
+			print("Easy")
+		else if difficulty_level_value <=8
+			print("Medium")
+		else
+			print("Hard")
+		end if
+	end if
+end while loop
